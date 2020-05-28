@@ -1,5 +1,5 @@
-// @ts-ignore
 const path = require('path');
+import { transformScssModulesLoader } from './utils/transformScssModulesLoader'
 
 module.exports = {
   stories: ['../src/**/*.stories.(mdx|tsx|ts|jsx|js)'],
@@ -26,4 +26,14 @@ module.exports = {
     '@storybook/addon-links',
     '@storybook/addon-a11y',
   ],
+  webpackFinal: async (config: any, { configType }: any) => {
+    // so that we don't have to include the extension in import paths; do we really want this?
+    config.resolve.extensions.push('.scss')
+    
+    // overwrite the css-loader for files like *modules.scss
+    const {i, j, newUseArray} = transformScssModulesLoader(config)
+    config.module.rules[i].oneOf[j].use = newUseArray
+
+    return config;
+  }
 };
