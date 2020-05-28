@@ -1,0 +1,48 @@
+.button {
+	-webkit-appearance: none;
+	border: 1px solid transparent;
+	background: transparent;
+	padding: 0;
+	display: inline-block;
+	border-radius: 2px;
+	text-align: center;
+	line-height: 1;
+	text-decoration: none;
+	/* setting some defaults for the type, but mostly should come from text components */
+	font: 400 16px/1 'Source Sans Pro', Arial, sans-serif;
+	transition: background-color 0.1s, border-color 0.1s, color 0.1s;
+
+	// @include button-text-states(
+	// 	#2e9adf,
+	// 	#275E8B,
+	// 	#205177,
+	// 	#69ADD8
+	// );
+
+	&:focus {
+		outline: none;
+	}
+
+	// @include button-focus(scale-color(#2e9adf, $alpha: -70%));
+}
+
+
+/*
+	Width
+*/
+
+.wide {
+	display: block;
+	width: 100%;
+}
+.wide-mobile {
+	display: block;
+	width: 100%;
+
+	@media(min-width: 600px) {
+		display: inline-block;
+		width: auto;
+	};
+}
+
+

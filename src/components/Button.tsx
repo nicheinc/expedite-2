@@ -1,5 +1,6 @@
 import React, { FunctionComponent } from 'react';
-
+import styles from './Button.module.scss';
+import { classNames } from '../utilities/css';
 export type Type = 'default' | 'action';
 
 interface Props {
@@ -10,14 +11,20 @@ interface Props {
   onClick?: () => void;
 
   /**
-   * Button type yo
+   * Button type
    */
   type?: Type;
+  fullWidth?: boolean;
 }
 
-const Button: FunctionComponent<Props> = ({ children, type = 'default', onClick }) => {
+const Button: FunctionComponent<Props> = ({ children, type = 'default', onClick, fullWidth = true }) => {
+  const className = classNames(
+    styles.button,
+    fullWidth && styles.wide,
+  );
+  
   return (
-    <button type="button" onClick={onClick}>
+    <button type="button" className={className} onClick={onClick}>
       {type}: {children}
     </button>
   );
